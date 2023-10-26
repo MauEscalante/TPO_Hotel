@@ -1,6 +1,8 @@
 package HOTEL;
 
-public class Cliente extends GestorDeReservas{
+import RESERVA.GestorDeReservas;
+
+public class Cliente extends GestorDeReservas implements IGestionarCliente{
 	private String nombre;
 	private String apellido;
 	private String DNI;
@@ -18,7 +20,7 @@ public class Cliente extends GestorDeReservas{
 		this.email = email;
 		this.preferenciaContacto = preferenciaContacto;
 	}
-
+	
 
 	public String getNombre() {
 		return nombre;
@@ -48,8 +50,21 @@ public class Cliente extends GestorDeReservas{
 	public ViaContacto getPreferenciaContacto() {
 		return preferenciaContacto;
 	}
-	
-	
+
+
+	@Override
+	public void agregarCliente(String nombre, String apellido, String DNI, int telefono, String email,
+			ViaContacto preferenciaContacto) {
+		Cliente cliente=new Cliente(nombre,apellido,DNI,telefono,email,preferenciaContacto);
+		Hotel.getInstance().setCliente(cliente);
+	}
+
+	@Override
+	public void eliminarCliente(String dni) {
+		Hotel.getInstance().eliminarCliente(dni);
+		
+		
+	}
 	
 	
 }

@@ -45,7 +45,7 @@ public class Hotel {
 	public void setReserva(Reserva reserva) {
 		this.reservas.add(reserva) ;
 	}
-
+	
 
 	public void setHabitacion(Habitacion habitacion) {
 		this.habitaciones.add(habitacion);
@@ -56,7 +56,10 @@ public class Hotel {
 		this.clientes.add(cliente);
 	}
 	
-	
+	public void eliminarCliente(String dni) {
+		Cliente c=getCliente(dni);
+		this.clientes.remove(c);
+	}
 	
 	
 }

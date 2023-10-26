@@ -3,6 +3,9 @@ package RESERVA;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+
+import FACTURA.EstadoFactura;
+import FACTURA.Factura;
 import HOTEL.*;
 import HABITACION.Extras;
 import HABITACION.Habitacion;
@@ -17,8 +20,8 @@ public class Reserva {
 	private EstadoReserva estado=new Registrada();
 	private Habitacion habitacion;
 	private double monto;
-	private boolean pagada=false;
-	protected Paquete packExtras;
+	private Paquete packExtras;
+	private Factura factura;
 	
 	public Reserva(LocalDate checkIn, LocalDate checkOut, Cliente cliente, ArrayList<Huesped> huesped,Habitacion habitacion, ArrayList<Extras> extras) {
 		LocalDate fActual=LocalDate.now();
@@ -50,14 +53,12 @@ public class Reserva {
 		return this.packExtras.calcularMonto();
 	}
 	
-	
-	
-	public boolean getPagada() {
-		return pagada;
+	public String getEstadoFactura() {
+		return this.factura.getEstadoFactura().getEstado();
 	}
 	
+	
 	public void pagar() {
-		this.pagada=true;
 		cambiarEstado();
 	}
 	
@@ -76,7 +77,7 @@ public class Reserva {
 		this.packExtras.sacarExtra(sacar);
 	}
 	
-	public voi notificar() {
+	public void notificar() {
 		//desarrollar
 	}
 	
