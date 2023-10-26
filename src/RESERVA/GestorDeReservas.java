@@ -20,7 +20,7 @@ public abstract class GestorDeReservas {
 		
 		
 		Reserva reserva1=new Reserva(checkIN, checkOUT, h.getCliente(dniCliente), huesped, habitacion, extras);
-		
+		reserva1.cambiarEstado();
 	}
 	
 	public void confirmarReserva(Reserva reservaAConfirmar) {

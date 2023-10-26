@@ -17,7 +17,7 @@ public class Reserva {
 	private LocalDate CheckOut;
 	private Cliente cliente;
 	private ArrayList<Huesped> huesped=new ArrayList<>();
-	private EstadoReserva estado=new Registrada();
+	private EstadoReserva estado=new Registrada(this);
 	private Habitacion habitacion;
 	private double monto;
 	private Paquete packExtras;
@@ -46,6 +46,8 @@ public class Reserva {
 		
 		double descuento=( monto * this.fechaReservado.getDescuento())/100;
 		monto-= descuento;
+		
+		generarFactura();
 		
 	}
 	
@@ -79,6 +81,11 @@ public class Reserva {
 	
 	public void notificar() {
 		//desarrollar
+	}
+	
+	public void generarFactura() {
+		Factura factura= new Factura(cliente, LocalDate.now(), monto, this);
+		cliente.agregarFactura(factura);
 	}
 	
 }

@@ -4,11 +4,14 @@ public class Disponible extends EstadoHabitacion{
 	
 	public Disponible() {
 		this.estadoDetalle = "Disponible";
+		
 	}
 
 	
-	public void reservar() {
+
+	@Override
+	public void cambiarEstado() {
 		this.estado = new Reservada();
-	
+		
 	}
 }

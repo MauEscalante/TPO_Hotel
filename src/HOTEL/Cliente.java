@@ -1,5 +1,9 @@
 package HOTEL;
 
+import java.util.ArrayList;
+
+import FACTURA.Factura;
+import FACTURA.MetodoPago;
 import RESERVA.GestorDeReservas;
 
 public class Cliente extends GestorDeReservas implements IGestionarCliente{
@@ -9,6 +13,7 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente{
 	private int telefono;
 	private String email;
 	private ViaContacto preferenciaContacto;
+	private ArrayList<Factura> facturas=new ArrayList<>();
 	
 	
 	public Cliente(String nombre, String apellido, String DNI, int telefono, String email,
@@ -21,6 +26,9 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente{
 		this.preferenciaContacto = preferenciaContacto;
 	}
 	
+	public void agregarFactura(Factura factura) {
+		facturas.add(factura);
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -50,6 +58,18 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente{
 	public ViaContacto getPreferenciaContacto() {
 		return preferenciaContacto;
 	}
+	
+	public void pagarFactura(int nroFactura,MetodoPago metodo) {
+		Factura f = null;
+		for(Factura fa:facturas) {
+			if(fa.getNroFactura()==nroFactura) {
+				f=fa;
+			}
+		}
+		if(f!=null) {
+			f.pagar(metodo);
+		}
+	}
 
 
 	@Override
@@ -62,7 +82,6 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente{
 	@Override
 	public void eliminarCliente(String dni) {
 		Hotel.getInstance().eliminarCliente(dni);
-		
 		
 	}
 	

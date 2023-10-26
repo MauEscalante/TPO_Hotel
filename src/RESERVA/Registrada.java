@@ -2,8 +2,9 @@ package RESERVA;
 
 public class Registrada extends EstadoReserva {
 	
-	public Registrada() {
+	public Registrada(Reserva reserva) {
 		this.estadoDetalle="Registrada";
+		this.reserva=reserva;
 	}
 
 	

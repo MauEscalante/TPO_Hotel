@@ -6,7 +6,9 @@ public class Reservada extends EstadoHabitacion{
 	}
 
 	
-	public void liberar() {
+	@Override
+	public void cambiarEstado() {
 		this.estado = new Disponible();
+		
 	}
 }
