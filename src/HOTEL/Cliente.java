@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import FACTURA.Factura;
 import FACTURA.MetodoPago;
 import RESERVA.GestorDeReservas;
+import RESERVA.ObserverNotificacion;
 
-public class Cliente extends GestorDeReservas implements IGestionarCliente{
+public class Cliente extends GestorDeReservas implements IGestionarCliente,ObserverNotificacion{
 	private String nombre;
 	private String apellido;
 	private String DNI;
@@ -82,6 +83,12 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente{
 	@Override
 	public void eliminarCliente(String dni) {
 		Hotel.getInstance().eliminarCliente(dni);
+		
+	}
+
+	@Override
+	public void notificar(String mensaje, Cliente cliente) {
+		System.out.println("Tu reserva fue "+ mensaje);
 		
 	}
 	

@@ -22,6 +22,7 @@ public class Reserva {
 	private double monto;
 	private Paquete packExtras;
 	private Factura factura;
+	private ObserverNotificacion observer;
 	
 	public Reserva(LocalDate checkIn, LocalDate checkOut, Cliente cliente, ArrayList<Huesped> huesped,Habitacion habitacion, ArrayList<Extras> extras) {
 		LocalDate fActual=LocalDate.now();
@@ -80,7 +81,7 @@ public class Reserva {
 	}
 	
 	public void notificar() {
-		//desarrollar
+		observer.notificar(getEstadoFactura(), cliente);
 	}
 	
 	public void generarFactura() {
