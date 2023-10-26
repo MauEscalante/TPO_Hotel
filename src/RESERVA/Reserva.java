@@ -42,7 +42,7 @@ public class Reserva {
 		this.huesped = huesped;
 		this.habitacion = habitacion;
 		
-		this.monto=habitacion.getPrecio() + packExtras.calcularMonto();
+		this.monto=habitacion.getPrecio() + getPrecioExtras();
 		
 		double descuento=( monto * this.fechaReservado.getDescuento())/100;
 		monto-= descuento;
@@ -54,7 +54,7 @@ public class Reserva {
 	}
 	
 	public String getEstadoFactura() {
-		return this.factura.getEstadoFactura().getEstado();
+		return this.factura.getEstadoFactura();
 	}
 	
 	

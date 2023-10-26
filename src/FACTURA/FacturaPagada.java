@@ -14,4 +14,11 @@ public class FacturaPagada extends EstadoFactura{
 				"Error", JOptionPane.ERROR_MESSAGE);
 	}
 
+	@Override
+	public void saldar() {
+		JOptionPane.showMessageDialog( null, "Factura ya abonada.",
+				"Error", JOptionPane.ERROR_MESSAGE);
+		
+	}
+
 }

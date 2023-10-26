@@ -10,10 +10,12 @@ public class PendienteDePago extends EstadoFactura{
 
 	@Override
 	public void cambiarEstado() {
-		if(factura.getMontoRecibido()>=factura.getMonto()) {
-			this.estado=new FacturaPagada();
-		}else {
+
 			this.estado=new FacturaVencida();
 		}
+		
+	public void saldar() {
+		this.estado=new FacturaPagada();
 	}
+	
 }

@@ -10,29 +10,40 @@ public class Factura {
 	private Cliente cliente;
 	private LocalDate fechaEmision;
 	private double monto;
-	private double montoRecibido;
 	private Reserva reserva;
 	private LocalDate fechaVencimiento;
 	private EstadoFactura estado;
+	private MercadoPago CVU;
 	
-	public Factura(Cliente cliente,LocalDate fEmision,double montoRecibido,double monto,Reserva reserva,LocalDate fVencimiento) {
+	
+	public Factura(Cliente cliente,LocalDate fEmision,double monto,Reserva reserva,LocalDate fVencimiento) {
 		this.cliente=cliente;
 		this.fechaEmision=fEmision;
-		this.montoRecibido=montoRecibido;
 		this.reserva=reserva;
 		this.fechaVencimiento=fVencimiento;
 		this.monto=monto;
 	}
 	
-	public double getMontoRecibido() {
-		return this.montoRecibido;
-	}
+	
 	
 	public double getMonto() {
 		return this.monto;
 	}
 	
-	public EstadoFactura getEstadoFactura() {
-		return this.estado;
+	public void cambiarEstadoFactura() {
+		estado.cambiarEstado();
+		reserva.cambiarEstado();
+	}
+	
+	public String getEstadoFactura() {
+		return this.estado.getEstado();
+	}
+	
+	
+	
+	public void pagar(MetodoPago metodo) {
+		CVU.setMetodoPago(metodo);
+		CVU.pagarFactura(this,getMonto());
+		this.estado.saldar();
 	}
 }
