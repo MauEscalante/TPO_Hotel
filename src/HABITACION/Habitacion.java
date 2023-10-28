@@ -23,32 +23,13 @@ public abstract class Habitacion {
 		return nroHabitacion;
 	}
 
-/*
-	public String mostrarExtras() {
-		StringBuilder agregados=new StringBuilder();
-		for(Extras items: this.packExtras.getExtras()) {
-			agregados.append(items.getAgregado()+","+items.getCosto()+"\n");
-		}
-		String packExtras=agregados.toString();
-		return packExtras;
-	}
-	
-	public double getPrecio() {
-		return precio;
-	}
-	
-	*/
 	
 	public void reservar(LocalDateTime CheckIn,LocalDateTime CheckOut ) {
 		//desarrollar
 	}
 	
 	public void cambiarEstado() {
-		if (this.estado.getEstado() == "Disponible") {
-			this.estado = new Reservada();
-		} else {
-			this.estado = new Disponible();
-		}
+		estado.cambiarEstado();
 	}
 	
 	public double getPrecio() {

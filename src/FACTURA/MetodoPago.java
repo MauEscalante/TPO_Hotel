@@ -1,6 +1,6 @@
 package FACTURA;
 
-public class MetodoPago {
+public abstract class MetodoPago {
 	public boolean procesarPago(double monto) {
 		
 		return true;
