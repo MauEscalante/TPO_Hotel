@@ -29,6 +29,10 @@ public class Hotel {
 		return instance;
 	}
 	
+	public ArrayList<Habitacion> getHabitaciones(){
+		return this.habitaciones;
+	}
+	
 	public boolean habitacionDisponible(Habitacion hab,LocalDate nCheckIn,LocalDate nCheckOut) {
 		List<LocalDate> calendario=calendarioReser.get(hab);
 		 for (LocalDate fecha = nCheckIn; fecha.isBefore(nCheckOut.plusDays(1)); fecha = fecha.plusDays(1)) {

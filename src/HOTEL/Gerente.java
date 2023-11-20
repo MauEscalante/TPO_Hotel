@@ -1,6 +1,7 @@
 package HOTEL;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import HABITACION.*;
 import RESERVA.GestorDeReservas;
@@ -8,6 +9,7 @@ import RESERVA.GestorDeReservas;
 public class Gerente extends GestorDeReservas implements IGestionarCliente{
 	private int id;
 	private static int idSig;
+	AsignadorFiltros f=new AsignadorFiltros();
 	
 	public Gerente() {}
 	
@@ -18,21 +20,18 @@ public class Gerente extends GestorDeReservas implements IGestionarCliente{
 	public void publicarHabitacion(int capacidad,double precio,String tipo) {
 		Habitacion hab=null;
 		if(tipo.equalsIgnoreCase("Estandar")) {
-			 hab=new Estandar(capacidad, precio);
+			 hab=new Habitacion(new Estandar(),capacidad, precio, new ArrayList<String>());	
 			
 		}else {
-			 hab=new Suite(capacidad, precio);
+			hab=new Habitacion(new Suite(),capacidad, precio, new ArrayList<String>());	
 		}
 		Hotel.getInstance().setHabitacion(hab);
 	}
 	
 	
 	
-	public ArrayList<Habitacion> buscarHabitaciones(){
-		
-		//completar
-		//verificar como implementar con el chain of responsability
-		return null;
+	public ArrayList<Habitacion> buscarHabitaciones(TipoPeticion tipo,String valor){
+		return f.asignarTarea(new Peticion(tipo,valor));
 	}
 
 	@Override
