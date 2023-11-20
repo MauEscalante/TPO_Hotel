@@ -1,16 +1,16 @@
 package HOTEL;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 import HABITACION.*;
 import RESERVA.Reserva;
-
+import java.util.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Hotel {
 	private static Hotel instance;
-	
+	private Map<Habitacion,List<LocalDate>> calendarioReser=new HashMap<>();
 	private ArrayList<Reserva> reservas;
 	private ArrayList<Habitacion> habitaciones;
 	private ArrayList<Cliente> clientes;
@@ -29,6 +29,16 @@ public class Hotel {
 		return instance;
 	}
 	
+	public boolean habitacionDisponible(Habitacion hab,LocalDate nCheckIn,LocalDate nCheckOut) {
+		List<LocalDate> calendario=calendarioReser.get(hab);
+		 for (LocalDate fecha = nCheckIn; fecha.isBefore(nCheckOut.plusDays(1)); fecha = fecha.plusDays(1)) {
+	            if (calendario.contains(fecha)) {
+	                return false;
+	            }
+	        }
+		 return true;
+	}
+	
 	public Cliente getCliente(String dni) {
 		for(Cliente c: clientes) {
 			if(c.getDNI()==dni	) {
@@ -44,6 +54,11 @@ public class Hotel {
 
 	public void setReserva(Reserva reserva) {
 		this.reservas.add(reserva) ;
+		Habitacion hab=reserva.getHabitacion();
+		List<LocalDate> lista=calendarioReser.get(hab);
+		for(LocalDate date=reserva.getCheckIN();!date.isAfter(reserva.getCheckOUT());date=date.plus(1, ChronoUnit.DAYS)  ) {
+			lista.add(date);
+		}
 	}
 	
 

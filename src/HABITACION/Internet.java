@@ -2,14 +2,16 @@ package HABITACION;
 
 public class Internet extends Extras{
 
-	@Override
-	public double getCosto() {
-		return 1000;
+	private double costo;
+	
+	public Internet(Habitacion habitacion,double precio) {
+		super(habitacion);
+		habitacion.agregar("Internet");
+		this.costo=precio;
 	}
 
-	@Override
-	public String getAgregado() {
-		return "Internet";
+	public double getPrecio() {
+		return (super.getPrecio()+this.costo);
 	}
 
 }

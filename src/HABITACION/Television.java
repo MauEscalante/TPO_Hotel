@@ -1,15 +1,18 @@
 package HABITACION;
 
 public class Television extends Extras{
-
-	@Override
-	public double getCosto() {
-		return 5000;
+	private double costo;
+	
+	
+	public Television(Habitacion habitacion,double precio) {
+		super(habitacion);
+		this.costo=precio;
+		habitacion.agregar("Television");
 	}
-
-	@Override
-	public String getAgregado() {
-		return "Television";
+	
+	public double getPrecio() {
+		return (super.getPrecio()+this.costo);
 	}
+	
 
 }

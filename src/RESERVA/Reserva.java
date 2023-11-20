@@ -9,7 +9,6 @@ import FACTURA.Factura;
 import HOTEL.*;
 import HABITACION.Extras;
 import HABITACION.Habitacion;
-import HABITACION.Paquete;
 
 public class Reserva {
 	private ITiempoReservado fechaReservado;
@@ -20,11 +19,10 @@ public class Reserva {
 	private EstadoReserva estado=new Registrada(this);
 	private Habitacion habitacion;
 	private double monto;
-	private Paquete packExtras;
 	private Factura factura;
 	private ObserverNotificacion observer;
 	
-	public Reserva(LocalDate checkIn, LocalDate checkOut, Cliente cliente, ArrayList<Huesped> huesped,Habitacion habitacion, ArrayList<Extras> extras) {
+	public Reserva(LocalDate checkIn, LocalDate checkOut, Cliente cliente, ArrayList<Huesped> huesped,Habitacion habitacion) {
 		LocalDate fActual=LocalDate.now();
 		
 		//esta raro estos ifs
@@ -36,14 +34,13 @@ public class Reserva {
 			this.fechaReservado=new SinAnticipacion();
 		}
 		
-		this.packExtras=new Paquete(extras);
 		this.CheckIn = checkIn;
 		this.CheckOut = checkOut;
 		this.cliente = cliente;
 		this.huesped = huesped;
 		this.habitacion = habitacion;
 		
-		this.monto=habitacion.getPrecio() + getPrecioExtras();
+		this.monto=habitacion.getPrecio();
 		
 		double descuento=( monto * this.fechaReservado.getDescuento())/100;
 		monto-= descuento;
@@ -52,14 +49,14 @@ public class Reserva {
 		
 	}
 	
-	private double getPrecioExtras() {
-		return this.packExtras.calcularMonto();
-	}
 	
 	public String getEstadoFactura() {
 		return this.factura.getEstadoFactura();
 	}
 	
+	public Habitacion getHabitacion() {
+		return this.habitacion;
+	}
 	
 	public void pagar() {
 		cambiarEstado();
@@ -70,16 +67,6 @@ public class Reserva {
 		notificar();
 	}
 	
-	
-	
-	public void agregarExtra(Extras nuevo) {
-		this.packExtras.agregarExtra(nuevo);
-	}
-	
-	public void quitarExtra(Extras sacar) {
-		this.packExtras.sacarExtra(sacar);
-	}
-	
 	public void notificar() {
 		observer.notificar(getEstadoFactura(), cliente);
 	}
@@ -87,6 +74,14 @@ public class Reserva {
 	public void generarFactura() {
 		Factura factura= new Factura(cliente, LocalDate.now(), monto, this);
 		cliente.agregarFactura(factura);
+	}
+	
+	public LocalDate getCheckIN() {
+		return this.CheckIn;
+	}
+	
+	public LocalDate getCheckOUT() {
+		return this.CheckOut;
 	}
 	
 }

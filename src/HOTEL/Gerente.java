@@ -2,7 +2,7 @@ package HOTEL;
 
 import java.util.ArrayList;
 
-import HABITACION.Habitacion;
+import HABITACION.*;
 import RESERVA.GestorDeReservas;
 
 public class Gerente extends GestorDeReservas implements IGestionarCliente{
@@ -15,9 +15,17 @@ public class Gerente extends GestorDeReservas implements IGestionarCliente{
 		return id;
 	}
 	
-	public void publicarHabitacion() {
-		//completar
+	public void publicarHabitacion(int capacidad,double precio,String tipo) {
+		Habitacion hab=null;
+		if(tipo.equalsIgnoreCase("Estandar")) {
+			 hab=new Estandar(capacidad, precio);
+			
+		}else {
+			 hab=new Suite(capacidad, precio);
+		}
+		Hotel.getInstance().setHabitacion(hab);
 	}
+	
 	
 	
 	public ArrayList<Habitacion> buscarHabitaciones(){

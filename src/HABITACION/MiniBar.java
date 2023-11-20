@@ -1,14 +1,17 @@
 package HABITACION;
 
 public class MiniBar extends Extras{
+	private double costo;
 
-	public String getAgregado() {
-		return "MiniBar";
+	public MiniBar(Habitacion habitacion,double precio) {
+		super(habitacion);
+		this.costo=precio;
+		habitacion.agregar("MiniBar");
 	}
-	
-	@Override
-	public double getCosto() {
-		return 10000;
+
+
+	public double getPrecio() {
+		return (super.getPrecio()+this.costo);
 	}
 	
 }
