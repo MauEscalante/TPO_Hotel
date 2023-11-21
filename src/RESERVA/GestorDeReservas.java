@@ -15,7 +15,7 @@ public abstract class GestorDeReservas {
 	public void generarReserva(LocalDate checkIN,LocalDate checkOUT,String dniCliente,ArrayList<Huesped> huesped,Habitacion habitacion) {	
 		if(h.habitacionDisponible(habitacion,checkIN,checkOUT)) {
 			Reserva reserva1=new Reserva(checkIN, checkOUT, h.getCliente(dniCliente), huesped, habitacion);
-			
+			h.agregarReserva(reserva1);
 		}
 		
 	}

@@ -20,7 +20,6 @@ public class Reserva {
 	private Habitacion habitacion;
 	private double monto;
 	private Factura factura;
-	private ObserverNotificacion observer;
 	
 	public Reserva(LocalDate checkIn, LocalDate checkOut, Cliente cliente, ArrayList<Huesped> huesped,Habitacion habitacion) {
 		LocalDate fActual=LocalDate.now();
@@ -64,16 +63,20 @@ public class Reserva {
 	
 	public void cambiarEstado() {
 		estado.cambiarEstado();
-		notificar();
+	}
+	
+	public void setEstado(EstadoReserva estado) {
+		this.estado=estado;
 	}
 	
 	public void notificar() {
-		observer.notificar(getEstadoFactura(), cliente);
+		cliente.notificar(getEstadoFactura());
 	}
 	
 	public void generarFactura() {
 		Factura factura= new Factura(cliente, LocalDate.now(), monto, this);
 		cliente.agregarFactura(factura);
+		this.factura=factura;
 	}
 	
 	public LocalDate getCheckIN() {

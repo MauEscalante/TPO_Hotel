@@ -2,12 +2,12 @@ package HOTEL;
 
 import java.util.ArrayList;
 
+import FACTURA.AdapterMetodoPago;
 import FACTURA.Factura;
 import FACTURA.MetodoPago;
 import RESERVA.GestorDeReservas;
-import RESERVA.ObserverNotificacion;
 
-public class Cliente extends GestorDeReservas implements IGestionarCliente,ObserverNotificacion{
+public class Cliente extends GestorDeReservas implements IGestionarCliente{
 	private String nombre;
 	private String apellido;
 	private String DNI;
@@ -25,6 +25,10 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente,Obser
 		this.telefono = telefono;
 		this.email = email;
 		this.preferenciaContacto = preferenciaContacto;
+	}
+	
+	public ArrayList<Factura> getFacturas(){
+		return this.facturas;
 	}
 	
 	public void agregarFactura(Factura factura) {
@@ -60,7 +64,7 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente,Obser
 		return preferenciaContacto;
 	}
 	
-	public void pagarFactura(int nroFactura,MetodoPago metodo) {
+	public void pagarFactura(int nroFactura,AdapterMetodoPago metodo) {
 		Factura f = null;
 		for(Factura fa:facturas) {
 			if(fa.getNroFactura()==nroFactura) {
@@ -86,8 +90,8 @@ public class Cliente extends GestorDeReservas implements IGestionarCliente,Obser
 		
 	}
 
-	@Override
-	public void notificar(String mensaje, Cliente cliente) {
+	
+	public void notificar(String mensaje) {
 		System.out.println("Tu reserva fue "+ mensaje);
 		
 	}

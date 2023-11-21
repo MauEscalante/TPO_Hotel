@@ -11,10 +11,11 @@ public class Registrada extends EstadoReserva {
 
 	@Override
 	public void cambiarEstado( ) {
-		if(reserva.getEstadoFactura()=="Pagada") {
-			this.estado=new Confirmada();
+		if(reserva.getEstadoFactura().equalsIgnoreCase("Pagada")) {
+			reserva.setEstado(new Confirmada());
 		}else {
-			this.estado=new Cancelada();
+			reserva.setEstado(new Cancelada());
+			System.out.println("entra"+estadoDetalle);
 		}
 
 	}

@@ -14,11 +14,6 @@ public class FacturaVencida extends EstadoFactura{
 				"Error", JOptionPane.ERROR_MESSAGE);
 	}
 
-	@Override
-	public void saldar() {
-		JOptionPane.showMessageDialog( null, "Factura vencida",
-				"Error", JOptionPane.ERROR_MESSAGE);
-		
-	}
+
 	
 }

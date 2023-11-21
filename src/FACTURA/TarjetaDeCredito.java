@@ -1,6 +1,8 @@
 package FACTURA;
 
-public class TarjetaDeCredito extends MetodoPago {
+public class TarjetaDeCredito extends MercadoPago implements AdapterMetodoPago {
+
+	
 
 	
 

@@ -11,5 +11,4 @@ public abstract class EstadoFactura {
 		return estadoDetalle;
 	}
 	public abstract void cambiarEstado();
-	public abstract void saldar();
 }

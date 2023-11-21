@@ -1,5 +1,5 @@
 package FACTURA;
 
-public class Efectivo extends MetodoPago {
+public class Efectivo extends MercadoPago implements AdapterMetodoPago {
 
 }

@@ -21,6 +21,14 @@ public class Hotel {
 		this.clientes=new ArrayList<>();
 	}
 	
+	public void agregarReserva(Reserva reserva) {
+		this.reservas.add(reserva);
+	}
+	
+	//eliminar funcion
+	public ArrayList<Reserva> getReservas(){
+		return this.reservas;
+	}
 	
 	public static Hotel getInstance() {
 		if (instance == null) {

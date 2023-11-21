@@ -7,14 +7,14 @@ import RESERVA.Reserva;
 
 public class Factura {
 	private int nroFactura;
-	private static int nroSig;
+	private static int nroSig=1;
 	private Cliente cliente;
 	private LocalDate fechaEmision;
 	private double monto;
 	private Reserva reserva;
 	private LocalDate fechaVencimiento;
-	private EstadoFactura estado=new PendienteDePago();
-	private MercadoPago CVU;
+	private EstadoFactura estado=new PendienteDePago(this);
+	private MetodoPago CVU=new MercadoPago();
 	
 	
 	public Factura(Cliente cliente,LocalDate fEmision,double monto,Reserva reserva) {
@@ -27,7 +27,9 @@ public class Factura {
 		this.monto=monto;
 	}
 	
-	
+	public void setEstado(EstadoFactura estado) {
+		this.estado=estado;
+	}
 	
 	public double getMonto() {
 		return this.monto;
@@ -44,13 +46,11 @@ public class Factura {
 	
 	
 	
-	public void pagar(MetodoPago metodo) {
+	public void pagar(AdapterMetodoPago metodo) {
 		CVU.setMetodoPago(metodo);
 		CVU.pagarFactura(this,getMonto());
-		this.estado.saldar();
-		reserva.cambiarEstado();
+		cambiarEstadoFactura();
 	}
-
 
 
 	public int getNroFactura() {
@@ -61,7 +61,7 @@ public class Factura {
 		return fechaVencimiento;
 	}
 
-	public MercadoPago getCVU() {
+	public MetodoPago getCVU() {
 		return CVU;
 	}
 	
