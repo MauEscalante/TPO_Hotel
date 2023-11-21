@@ -25,10 +25,20 @@ public class Hotel {
 		this.reservas.add(reserva);
 	}
 	
-	//eliminar funcion
+	
 	public ArrayList<Reserva> getReservas(){
 		return this.reservas;
 	}
+	
+	public ArrayList<String> generarReporteHabitaciones(){
+		ArrayList<String> lista=new ArrayList<>();
+		for(Habitacion h: habitaciones) {
+			String valor= "Habitacion "+h.getNroHabitacion()+" esta "+h.getEstado();
+			lista.add(valor);
+		}
+		return lista;
+	}
+	
 	
 	public static Hotel getInstance() {
 		if (instance == null) {

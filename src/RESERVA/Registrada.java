@@ -15,7 +15,6 @@ public class Registrada extends EstadoReserva {
 			reserva.setEstado(new Confirmada());
 		}else {
 			reserva.setEstado(new Cancelada());
-			System.out.println("entra"+estadoDetalle);
 		}
 
 	}

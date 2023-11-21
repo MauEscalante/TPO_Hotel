@@ -5,7 +5,6 @@ public abstract class MetodoPago {
 	private boolean pagoAceptado;
 	
 	public boolean procesarPago(double monto) {
-		this.pagoAceptado=true;
 		return true;
 	}
 	
@@ -14,7 +13,7 @@ public abstract class MetodoPago {
 	}
 	
 	public void  pagarFactura(Factura factura,double monto) {
-		metodo.procesarPago(monto);
+		pagoAceptado=metodo.procesarPago(monto);
 	}
 	
 	public void setMetodoPago(AdapterMetodoPago metodo) {

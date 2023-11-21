@@ -63,6 +63,7 @@ public class Reserva {
 	
 	public void cambiarEstado() {
 		estado.cambiarEstado();
+		notificar();
 	}
 	
 	public void setEstado(EstadoReserva estado) {
@@ -85,6 +86,9 @@ public class Reserva {
 	
 	public LocalDate getCheckOUT() {
 		return this.CheckOut;
+	}
+	public String getEstadoReserva() {
+		return this.estado.getEstado();
 	}
 	
 }
