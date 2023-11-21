@@ -11,6 +11,7 @@ public class AsignadorFiltros {
 		SistemaFiltrado Hab=new FiltroCapacidad(null);
 		SistemaFiltrado tipoHabitacion=new FiltroTipoHabitacion(Hab);
 		SistemaFiltrado EstadoHabitacion=new FiltroEstado(tipoHabitacion);
+		this.cadena=EstadoHabitacion;
 	}
 	
 	
@@ -18,6 +19,7 @@ public class AsignadorFiltros {
 	public ArrayList<Habitacion> asignarTarea(Peticion peticion) {
 		ArrayList<Habitacion> habs=new ArrayList<>();
 		for(Habitacion h:Hotel.getInstance().getHabitaciones()) {
+			
 			habs=this.cadena.manejar(peticion,h);
 		}
 		return habs;

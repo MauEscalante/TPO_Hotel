@@ -27,6 +27,7 @@ public abstract class GestorDeReservas {
 	
 	public void cancelarReserva(Reserva reservaACancelar) {
 		reservaACancelar.cambiarEstado();
+		h.clearReserva(reservaACancelar);
 	}
 	
 }

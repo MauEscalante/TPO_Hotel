@@ -1,14 +1,15 @@
 package HABITACION;
 
 public class Reservada extends EstadoHabitacion{
-	public Reservada() {
+	public Reservada(Habitacion hab) {
+		super(hab);
 		this.estadoDetalle = "Reservada";
 	}
 
 	
 	@Override
 	public void cambiarEstado() {
-		this.estado = new Disponible();
+		hab.setEstado(new Disponible(hab));
 		
 	}
 }

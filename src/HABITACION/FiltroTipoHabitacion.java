@@ -13,10 +13,10 @@ public class FiltroTipoHabitacion extends SistemaFiltrado{
 		if(peticion.esDeTipo(TipoPeticion.TIPO_HABITACION)) {
 			if(peticion.getValor().equalsIgnoreCase(h.getTipoHabitacion())) {
 				this.habEncontradas.add(h);
-			}else if(this.siguienteFiltro!=null) {
-				this.siguienteFiltro.manejar(peticion,h);
 			}
-		}
+		}else if(this.siguienteFiltro!=null) {
+				return this.siguienteFiltro.manejar(peticion,h);
+			}
 		return this.habEncontradas;
 	}
 

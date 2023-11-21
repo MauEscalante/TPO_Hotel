@@ -17,9 +17,9 @@ public class Gerente extends GestorDeReservas implements IGestionarCliente{
 		return id;
 	}
 	
-	public void publicarHabitacion(int capacidad,double precio,String tipo) {
+	public void publicarHabitacion(int capacidad,double precio,EtipoHabitacion tipo) {
 		Habitacion hab=null;
-		if(tipo.equalsIgnoreCase("Estandar")) {
+		if(tipo.equals(EtipoHabitacion.ESTANDAR)) {
 			 hab=new Habitacion(new Estandar(),capacidad, precio, new ArrayList<String>());	
 			
 		}else {

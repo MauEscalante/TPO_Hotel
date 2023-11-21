@@ -11,13 +11,13 @@ public class FiltroCapacidad extends SistemaFiltrado{
 	@Override
 	public ArrayList<Habitacion> manejar(Peticion peticion,Habitacion h) {
 		if(peticion.esDeTipo(TipoPeticion.CAPACIDAD)) {
-			if(this.habitacion.getCapacidad()==Integer.valueOf(peticion.getValor())) {
+			if(h.getCapacidad()==Integer.valueOf(peticion.getValor())) {
 				habEncontradas.add(h);
-				
 			}
 		}else if(this.siguienteFiltro!=null) {
-			this.siguienteFiltro.manejar(peticion,h);
+			return this.siguienteFiltro.manejar(peticion,h);
 		}
+		
 		return this.habEncontradas;
 	}
 
