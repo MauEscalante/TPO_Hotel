@@ -8,7 +8,7 @@ import java.util.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Hotel {
+public class Hotel implements IGestionarCliente {
 	private static Hotel instance;
 	private Map<Habitacion,List<LocalDate>> calendarioReser=new HashMap<>();
 	private ArrayList<Reserva> reservas;
@@ -20,6 +20,8 @@ public class Hotel {
 		this.habitaciones=new ArrayList<>();
 		this.clientes=new ArrayList<>();
 	}
+	
+	
 	
 	public void agregarReserva(Reserva reserva) {
 		this.reservas.add(reserva);
@@ -126,9 +128,19 @@ public class Hotel {
 		this.clientes.add(cliente);
 	}
 	
+	
+	@Override
+	public void agregarCliente(String nombre, String apellido, String DNI, int telefono, String email,
+			ViaContacto preferenciaContacto) {
+		Cliente cliente=new Cliente(nombre,apellido,DNI,telefono,email,preferenciaContacto);
+		Hotel.getInstance().setCliente(cliente);
+	}
+
+	@Override
 	public void eliminarCliente(String dni) {
-		Cliente c=getCliente(dni);
-		this.clientes.remove(c);
+		Hotel.getInstance().eliminarCliente(dni);
+		
+		
 	}
 	
 	
